@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Container
         maxWidth={false}
-        sx={{ backgroundColor: "orange", flexGrow: 1 }}
+        sx={{ backgroundColor: "orange", flexGrow: 0 }}
       >
         my container
       </Container>
