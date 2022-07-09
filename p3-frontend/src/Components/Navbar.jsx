@@ -39,7 +39,7 @@ export default function Navbar() {
           <a href=" ">Login</a>
         </li>
         <li>
-          <a href=" ">Sign Up</a>
+          <a href=" " className="sign">Sign Up</a>
         </li>
       </ul>
     </nav>

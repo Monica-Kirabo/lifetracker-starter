@@ -28,3 +28,10 @@
   height: 50px;
   width: 50px;
 }
+.sign{
+    background-color: rgb(53, 180, 138);
+
+    border-radius: 15px;
+    height: 7px;
+    border: 3px;
+}
