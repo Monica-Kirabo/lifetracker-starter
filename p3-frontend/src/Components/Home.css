@@ -9,7 +9,7 @@
   max-width: 100vw;
   height: calc(100% - var(--navbar-height));
   min-height: calc(100vh - var(--navbar-height));
-  overflow-x: hidden;
+ 
 
 }
 
