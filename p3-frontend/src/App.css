@@ -41,8 +41,10 @@ button {
   font-size: calc(10px + 2vmin);
 } */
 #root {
-  background-color: rgb(127, 80, 80);
+  background-color:rgb(41, 66, 66);
+  
   min-height: 100vh;
   flex-direction: column;
   display: flex;
 }
+

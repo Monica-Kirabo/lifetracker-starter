@@ -9,15 +9,10 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <div className="app">
       <Navbar />
-      <Container
-        maxWidth={false}
-        sx={{ backgroundColor: "orange", flexGrow: 0 }}
-      >
-        my container
-      </Container>
-    </>
+    
+    </div>
   );
 }
 
