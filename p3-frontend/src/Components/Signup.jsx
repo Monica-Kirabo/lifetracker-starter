@@ -18,12 +18,11 @@ export default function Signup({ setAppState }) {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
-    username:"",
+    username: "",
     email: "",
-  
+
     password: "",
     passwordConfirm: "",
-   
   });
 
   const handleOnInputChange = (event) => {
@@ -72,8 +71,7 @@ export default function Signup({ setAppState }) {
 
     try {
       const res = await axios.post("http://localhost:3001/auth/register", {
-       
-        username:form.username,
+        username: form.username,
         first_name: form.firstName,
         last_name: form.lastName,
         email: form.email,
@@ -104,7 +102,6 @@ export default function Signup({ setAppState }) {
 
   return (
     <div className="Register">
-     
       <div className="card">
         <h2>Register</h2>
 
@@ -113,105 +110,105 @@ export default function Signup({ setAppState }) {
 
         <div className="form">
           <div className="split-inputs">
-            
-
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="jane@doe.io"
-              value={form.email}
-              onChange={handleOnInputChange}
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
-          </div>
-           
-
-          <div className="input-field">
-            <label htmlFor="email">username</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="your_username"
-              value={form.username}
-              onChange={handleOnInputChange}
-            />
-            {errors.username && <span className="error">{errors.username}</span>}
-          </div>
-
-   
-
-          <div className="split-inputs">
             <div className="input-field">
-              <label htmlFor="name">First Name</label>
+              <label htmlFor="email">Email</label>
               <input
-                type="text"
-                name="firstName"
-                placeholder="Jane"
-                value={form.firstName}
+                type="email"
+                name="email"
+                placeholder="jane@doe.io"
+                value={form.email}
                 onChange={handleOnInputChange}
               />
-              {errors.firstName && (
-                <span className="error">{errors.firstName}</span>
-              )}
+              {errors.email && <span className="error">{errors.email}</span>}
             </div>
+
             <div className="input-field">
-              <label htmlFor="name">Last Name</label>
+              <label htmlFor="email">username</label>
               <input
                 type="text"
-                name="lastName"
-                placeholder="Doe"
-                value={form.lastName}
+                name="username"
+                placeholder="your_username"
+                value={form.username}
                 onChange={handleOnInputChange}
               />
-              {errors.lastName && (
-                <span className="error">{errors.lastName}</span>
+              {errors.username && (
+                <span className="error">{errors.username}</span>
               )}
             </div>
+
+            <div className="split-inputs">
+              <div className="input-field">
+                <label htmlFor="name">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Jane"
+                  value={form.firstName}
+                  onChange={handleOnInputChange}
+                />
+                {errors.firstName && (
+                  <span className="error">{errors.firstName}</span>
+                )}
+              </div>
+              <div className="input-field">
+                <label htmlFor="name">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Doe"
+                  value={form.lastName}
+                  onChange={handleOnInputChange}
+                />
+                {errors.lastName && (
+                  <span className="error">{errors.lastName}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="input-field">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                value={form.password}
+                onChange={handleOnInputChange}
+              />
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
+
+            <div className="input-field">
+              <label htmlFor="passwordConfirm">Confirm Password</label>
+              <input
+                type="password"
+                name="passwordConfirm"
+                placeholder="confirm password"
+                value={form.passwordConfirm}
+                onChange={handleOnInputChange}
+              />
+              {errors.passwordConfirm && (
+                <span className="error">{errors.passwordConfirm}</span>
+              )}
+            </div>
+
+            <button
+              className="btn"
+              disabled={isLoading}
+              onClick={handleOnSubmit}
+            >
+              {isLoading ? "Loading..." : "Create Account"}
+            </button>
           </div>
 
-
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={form.password}
-              onChange={handleOnInputChange}
-            />
-            {errors.password && (
-              <span className="error">{errors.password}</span>
-            )}
+          <div className="footer">
+            <p>
+              Already have an account? Login <Link to="/login">here</Link>
+            </p>
           </div>
-
-          <div className="input-field">
-            <label htmlFor="passwordConfirm">Confirm Password</label>
-            <input
-              type="password"
-              name="passwordConfirm"
-              placeholder="confirm password"
-              value={form.passwordConfirm}
-              onChange={handleOnInputChange}
-            />
-            {errors.passwordConfirm && (
-              <span className="error">{errors.passwordConfirm}</span>
-            )}
-          </div>
-
-          <button className="btn" disabled={isLoading} onClick={handleOnSubmit}>
-            {isLoading ? "Loading..." : "Create Account"}
-          </button>
-        </div>
-
-        <div className="footer">
-          <p>
-            Already have an account? Login <Link to="/login">here</Link>
-          </p>
         </div>
       </div>
-    </div>
     </div>
   );
 }

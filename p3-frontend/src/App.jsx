@@ -12,6 +12,7 @@ import Login from "./Components/Login";
 import Sleep from "./Components/Sleep";
 import Exercise from "./Components/Exercise";
 import Nutrition from "./Components/Nutrition";
+import RecordNutrition from "./Components/RecordNutrition";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -27,6 +28,7 @@ function App() {
      <Route path="/sleep" element={ <Sleep />}/>
      <Route path="/exercise" element={ <Exercise />}/>
      <Route path="/nutrition" element={ <Nutrition />}/>
+     <Route path="/Recordnutrition" element={ <RecordNutrition />}/>
         </Routes>
 
       </main>
