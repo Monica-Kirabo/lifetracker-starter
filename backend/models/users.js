@@ -29,11 +29,11 @@ class User {
   static async register(credentials) {
     const requiredFields = [
       "email",
+      "username",
       "password",
       "first_name",
       "last_name",
-      "location",
-      "date",
+     
     ];
 
     requiredFields.forEach((field) => {
@@ -51,14 +51,14 @@ class User {
     );
     const lowercaseEmail = credentials.email.toLowerCase();
     const result = await db.query(
-      ` INSERT INTO users(email,password,first_name,last_name,location,date) VALUES($1,$2,$3,$4,$5,$6) RETURNING id,email,first_name,last_name,location,date`,
+      ` INSERT INTO users(email,username,password,first_name,last_name) VALUES($1,$2,$3,$4,$5) RETURNING id,email,username,first_name,last_name`,
       [
         lowercaseEmail,
         hashedPassword,
+        credentials.username,
         credentials.first_name,
         credentials.last_name,
-        credentials.location,
-        credentials.date,
+     
       ]
     );
     const user = result.rows[0];
