@@ -36,10 +36,10 @@ export default function Navbar() {
           <a href=" ">Sleep</a>
         </li>
         <li>
-          <a href=" ">Login</a>
+          <a href="/login ">Login</a>
         </li>
         <li>
-          <a href=" " className="sign">Sign Up</a>
+          <a href="/register" className="sign">Sign Up</a>
         </li>
       </ul>
     </nav>

@@ -206,9 +206,9 @@ export default function Signup({ setAppState }) {
         </div>
 
         <div className="footer">
-          {/* <p>
+          <p>
             Already have an account? Login <Link to="/login">here</Link>
-          </p> */}
+          </p>
         </div>
       </div>
     </div>
