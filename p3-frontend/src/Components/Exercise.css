@@ -1,0 +1,44 @@
+.exercise .title {
+  text-align: center;
+}
+.exercise {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.title {
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  background-color: rgb(91, 98, 98);
+  height: 120px;
+  width: 100%;
+  display: flex;
+}
+.exercise .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+.exercise .header ul {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}

@@ -9,6 +9,9 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home"
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
+import Sleep from "./Components/Sleep";
+import Exercise from "./Components/Exercise";
+import Nutrition from "./Components/Nutrition";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -21,6 +24,9 @@ function App() {
      <Route path="/" element={ <Home />}/>
      <Route path="/register" element={ <Signup />}/>
      <Route path="/login" element={ <Login />}/>
+     <Route path="/sleep" element={ <Sleep />}/>
+     <Route path="/exercise" element={ <Exercise />}/>
+     <Route path="/nutrition" element={ <Nutrition />}/>
         </Routes>
 
       </main>
