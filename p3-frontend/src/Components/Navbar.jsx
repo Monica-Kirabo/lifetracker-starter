@@ -22,7 +22,7 @@ export default function Navbar() {
             <i className="fa fa-facebook" aria-hidden="true"></i>
           </a>
 
-          <a href="/" className="Home">
+          <a href="/Activity" className="Home">
             Activity
           </a>
         </li>
