@@ -15,7 +15,7 @@ import Nutrition from "./Components/Nutrition";
 import RecordNutrition from "./Components/RecordNutrition";
 function App() {
   const [count, setCount] = useState(0);
-
+  const [appState, setAppState] = useState({})
   return (
     <div className="app">
       <BrowserRouter>
@@ -23,8 +23,8 @@ function App() {
       <main>
       <Routes>
      <Route path="/" element={ <Home />}/>
-     <Route path="/register" element={ <Signup />}/>
-     <Route path="/login" element={ <Login />}/>
+     <Route path="/register" element={ <Signup setAppState={setAppState} />}/>
+     <Route path="/login" element={ <Login setAppState={setAppState} />}/>
      <Route path="/sleep" element={ <Sleep />}/>
      <Route path="/exercise" element={ <Exercise />}/>
      <Route path="/nutrition" element={ <Nutrition />}/>
