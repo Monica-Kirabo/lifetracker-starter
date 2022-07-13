@@ -17,6 +17,9 @@ return(
         </li>
         </ul>
     </div>
+    <div className="exercisecontent">
+    <h1>Nothing Here Yet</h1>
+    </div>
 </div>
 );
 }
