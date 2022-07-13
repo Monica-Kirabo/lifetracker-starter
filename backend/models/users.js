@@ -11,7 +11,7 @@ class User {
     }
     requiredFields.forEach((field) => {
       if (!credentials.hasOwnProperty(field)) {
-        throw new BadRequestError("Missing ${field} in request body.");
+        throw new BadRequestError(`Missing ${field} in request body.`);
       }
     });
     console.log("1")
@@ -54,8 +54,8 @@ class User {
       ` INSERT INTO users(email,username,password,first_name,last_name) VALUES($1,$2,$3,$4,$5) RETURNING id,email,username,first_name,last_name`,
       [
         lowercaseEmail,
-        hashedPassword,
         credentials.username,
+        hashedPassword,
         credentials.first_name,
         credentials.last_name,
      
@@ -69,9 +69,11 @@ class User {
     if (!email) {
       throw new BadRequestError("No email provided");
     }
-    const query = "SELECT * FROM users WHERE email=$1";
+    const query = `SELECT * FROM users WHERE email=$1`;
+    
     const result = await db.query(query, [email.toLowerCase()]);
     const user = result.rows[0];
+    console.log(user)
     return user;
   }
 }

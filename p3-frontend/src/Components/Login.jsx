@@ -36,7 +36,7 @@ export default function Login({ setAppState }) {
       if (res?.data) {
         setAppState(res.data)
         setIsLoading(false)
-        navigate("/portal")
+        navigate("/Activity")
       } else {
         setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
         setIsLoading(false)
