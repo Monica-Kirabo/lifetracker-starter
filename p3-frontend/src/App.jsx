@@ -14,6 +14,8 @@ import Exercise from "./Components/Exercise";
 import Nutrition from "./Components/Nutrition";
 import RecordNutrition from "./Components/RecordNutrition";
 import Activity from "./Components/Activity";
+//import { AddSleep } from "./Components/AddSleep";
+import AddExercise from "./Components/AddExercise";
 function App() {
   const [count, setCount] = useState(0);
   const [appState, setAppState] = useState({})
@@ -31,6 +33,8 @@ function App() {
      <Route path="/nutrition" element={ <Nutrition />}/>
      <Route path="/Recordnutrition" element={ <RecordNutrition />}/>
      <Route path="/Activity" element={ <Activity />}/>
+     <Route path="/AddExercise" element={ <AddExercise />}/>
+     {/* <Route path="/Addsleep" element={ <AddSleep />}/> */}
         </Routes>
 
       </main>

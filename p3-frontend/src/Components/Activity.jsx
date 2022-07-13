@@ -14,11 +14,11 @@ return(
     <h1>Activity Feed</h1>
     </div>
         <li>
-          <a href="/login ">Add Exercise</a>
+          <a href="/AddExercise ">Add Exercise</a>
         </li>
 
         <li>
-          <a href="/login ">Log sleep</a>
+          <a href="/Addsleep ">Log sleep</a>
         </li>
 
         <li>

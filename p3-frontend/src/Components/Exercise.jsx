@@ -13,7 +13,7 @@ return(
 
 <ul>
         <li>
-          <a href="/login ">Add Exercise</a>
+          <a href="/AddExercise ">Add Exercise</a>
         </li>
         </ul>
     </div>
