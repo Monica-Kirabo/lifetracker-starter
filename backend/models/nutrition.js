@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { unauthorizedError, BadRequestError } = require("../utils/errors");
 const db = require("../db");
-const { useScrollTrigger } = require("@material-ui/core");
+
 const { BCRYPT_WORK_FACTOR } = require("../config");
 class Nutrition {
   static async AddNutriton(credentials) {
@@ -11,8 +11,7 @@ class Nutrition {
       "Quantity",
       "calories",
       "image_url",
-      "user_id"
-      
+      "user_id",
     ];
 
     requiredFields.forEach((field) => {
@@ -30,7 +29,7 @@ class Nutrition {
         credentials.Quantity,
         credentials.calories,
         credentials.image_url,
-        credentials.user_id
+        credentials.user_id,
       ]
     );
     const nutrition = result.rows[0];

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { unauthorizedError, BadRequestError } = require("../utils/errors");
 const db = require("../db");
-const { useScrollTrigger } = require("@material-ui/core");
+
 const { BCRYPT_WORK_FACTOR } = require("../config");
 class User {
   static async login(credentials) {
