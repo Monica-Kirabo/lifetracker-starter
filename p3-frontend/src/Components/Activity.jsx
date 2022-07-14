@@ -1,7 +1,10 @@
 import "./Activity.css";
-import {React} from "react"
+import * as React from "react"
+import { useState } from "react";
 
-export default function Activity() {
+export default function Activity({appState, sessionId, setSessionId}) {
+  console.log(sessionId)
+  setSessionId(sessionId)
 return(
 <div className="activity">
     

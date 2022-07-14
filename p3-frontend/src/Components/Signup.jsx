@@ -79,7 +79,7 @@ export default function Signup({ setAppState }) {
       });
 
       if (res?.data?.user) {
-        setAppState(res.data);
+    //    setAppState(res.data);
         setIsLoading(false);
         navigate("/Activity");
       } else {

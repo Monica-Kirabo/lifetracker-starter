@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/users");
+const Nutrition=require("../models/nutrition")
 router.post("/login", async (req, res, next) => {
   
   try {
@@ -23,7 +24,17 @@ router.post("/register", async (req, res, next) => {
     next(err);
   }
 });
-
+router.post("/Recordnutrition", async (req, res, next) => {
+  try {
+   
+    console.log("i am req",req.body)
+    const nutrition = await Nutrition.AddNutriton(req.body);
+    return res.status(201).json({ nutrition });
+  } catch (err) {
+    console.log(err.stack);
+    next(err);
+  }
+});
 module.exports = router;
 // var express = require('express');
 // var router = express.Router();

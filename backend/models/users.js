@@ -33,7 +33,7 @@ class User {
       "password",
       "first_name",
       "last_name",
-     
+      
     ];
 
     requiredFields.forEach((field) => {

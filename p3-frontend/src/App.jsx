@@ -1,3 +1,4 @@
+import * as React from "react"
 import { useState } from "react";
 //import logo from "./logo.svg";
 import "./App.css";
@@ -19,6 +20,8 @@ import AddExercise from "./Components/AddExercise";
 function App() {
   const [count, setCount] = useState(0);
   const [appState, setAppState] = useState({})
+  const [sessionId, setSessionId] = useState(null);
+  
   return (
     <div className="app">
       <BrowserRouter>
@@ -26,14 +29,14 @@ function App() {
       <main>
       <Routes>
      <Route path="/" element={ <Home />}/>
-     <Route path="/register" element={ <Signup setAppState={setAppState} />}/>
-     <Route path="/login" element={ <Login setAppState={setAppState} />}/>
-     <Route path="/sleep" element={ <Sleep />}/>
-     <Route path="/exercise" element={ <Exercise />}/>
-     <Route path="/nutrition" element={ <Nutrition />}/>
-     <Route path="/Recordnutrition" element={ <RecordNutrition />}/>
-     <Route path="/Activity" element={ <Activity />}/>
-     <Route path="/AddExercise" element={ <AddExercise />}/>
+     <Route path="/register" element={ <Signup setAppState={setAppState} sessionId={sessionId} setSessionId={setSessionId}/>}/>
+     <Route path="/login" element={ <Login appState={appState} setAppState={setAppState} sessionId={sessionId} setSessionId={setSessionId}/>}/>
+     <Route path="/sleep" element={ <Sleep appState={appState}/>}/>
+     <Route path="/exercise" element={ <Exercise appState={appState}/>}/>
+     <Route path="/nutrition" element={ <Nutrition appState={appState} sessionId={sessionId}/>}/>
+     <Route path="/Recordnutrition" element={ <RecordNutrition  appState={appState} sessionId={sessionId}/>}/>
+     <Route path="/Activity" element={ <Activity setSessionId={setSessionId}  appState={appState} setAppState={setAppState} sessionId={sessionId}/>}/>
+     <Route path="/AddExercise" element={ <AddExercise appState={appState}/>}/>
      {/* <Route path="/Addsleep" element={ <AddSleep />}/> */}
         </Routes>
 

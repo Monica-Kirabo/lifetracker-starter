@@ -1,48 +1,48 @@
-
-
+import * as React from "react"
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./RecordNutrition.css";
 
-
-export default function RecordNutrition({ setAppState }) {
+export default function RecordNutrition({ appState, sessionId}) {
+  console.log(sessionId)
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     name: "",
     category: "",
-    quantity: "",
+    Quantity: "",
     calories: "",
 
-    imageUrl: ""
-
+    image_url: "",
   });
   const handleOnInputChange = (event) => {
-   
-   
-   
-
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
   };
 
   const handleOnSubmit = async () => {
     setIsLoading(true);
     setErrors((e) => ({ ...e, form: null }));
-
     
-    try {
-      const res = await axios.post("http://localhost:3001/auth/register", {
-        name: form.name,
-        category: form.category,
-        quantity: form.quantity,
-        calories: form.calories,
-        imageUrl: form.imageUrl,
-      });
 
-      if (res?.data?.user) {
-        setAppState(res.data);
+    try {
+      const res = await axios.post(
+        "http://localhost:3001/auth/Recordnutrition",
+        {
+          name: form.name,
+          category: form.category,
+          Quantity: form.Quantity,
+          calories: form.calories,
+          image_url: form.image_url,
+          user_id: 1
+
+        }
+      );
+
+      
+      if (res?.data?.nutrition) {
+      //  setAppState(res.data);
         setIsLoading(false);
         navigate("/Activity");
       } else {
@@ -93,11 +93,20 @@ export default function RecordNutrition({ setAppState }) {
                 value={form.category}
                 onChange={handleOnInputChange}
               />
-             
+            </div>
+            <div className="input-field">
+              <label htmlFor="Quantity">Quantity</label>
+              <input
+                type="text"
+                name="Quantity"
+                placeholder="Quantity"
+                value={form.Quantity}
+                onChange={handleOnInputChange}
+              />
             </div>
 
             <div className="split-inputs">
-              <div className="input-field">
+              {/* <div className="input-field">
                 <label htmlFor="quantity">Quantity</label>
                 <input
                   type="text"
@@ -107,33 +116,29 @@ export default function RecordNutrition({ setAppState }) {
                   onChange={handleOnInputChange}
                 />
                
-              </div>
+              </div> */}
               <div className="input-field">
                 <label htmlFor="calories">Calories</label>
                 <input
                   type="text"
-                  name="lastName"
+                  name="calories"
                   placeholder="1"
                   value={form.calories}
                   onChange={handleOnInputChange}
                 />
-                
               </div>
             </div>
 
             <div className="input-field">
-              <label htmlFor="password">ImageUrl</label>
+              <label htmlFor="image_url">ImageUrl</label>
               <input
-                type="password"
-                name="password"
+                type="image_url"
+                name="image_url"
                 placeholder="http://www.food-image.com"
-                value={form.imageUrl}
+                value={form.image_url}
                 onChange={handleOnInputChange}
               />
-             
             </div>
-
-          
 
             <button
               className="btn"
@@ -143,14 +148,11 @@ export default function RecordNutrition({ setAppState }) {
               {isLoading ? "Loading..." : "Record Nutrition"}
             </button>
           </div>
-
-        
         </div>
       </div>
     </div>
   );
 }
-
 
 // import "./RecordNutrition.css";
 // import {React} from "react"
@@ -161,10 +163,9 @@ export default function RecordNutrition({ setAppState }) {
 //         <div className="title">
 //         <h1>Nutrition</h1>
 //         </div>
-        
+
 //         <div className="header">
 //             <h1>Record Nutrition</h1>
-  
 
 //         </div>
 //     </div>
