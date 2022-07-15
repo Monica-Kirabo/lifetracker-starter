@@ -26,7 +26,7 @@ CREATE TABLE exercise (
     name        TEXT NOT NULL,
     category    TEXT NOT NULL,
     duration    INT NOT NULL CHECK (duration > 0),
-    intensity   INT NOT NULL CHECK (intensity > 0 AND intensity <= 10),
+    intensity   INT NOT NULL CHECK (intensity > 0 AND intensity <= 100),
     user_id     INT NOT NULL,
     created_at  TIMESTAMP NOT NULL DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
