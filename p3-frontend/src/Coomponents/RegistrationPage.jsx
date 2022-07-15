@@ -1,14 +1,14 @@
 import * as React from "react";
-import "./SignUpPage.css";
+import "./RegistrationPage.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Signup from "./Signup";
+import RegistrationForm from "./RegistrationForm";
 
-export default function SignUpPage(props) {
+export default function RegistrationPage(props) {
   const navigate = useNavigate();
   return (
     <div className="registration-page">
-      {<Signup user={props.user}setUser={props.setUser}></Signup>}
+      {<RegistrationForm setUser={props.setUser}></RegistrationForm>}
     </div>
   );
 }

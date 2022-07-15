@@ -9,6 +9,7 @@ class ApiClient {
 
   async setToken(token) {
     this.token = token;
+    console.log("token being set in browser storage",token)
     localStorage.setItem(this.tokenName, token);
   }
 
@@ -21,6 +22,8 @@ class ApiClient {
     };
 
     if (this.token) {
+      console.log(typeof this.token)
+      console.log(this.token,"being added to header")
       headers["Authorization"] = `Bearer ${this.token}`;
     }
 

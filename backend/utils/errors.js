@@ -17,10 +17,10 @@ class ExpressError extends Error {
       super("Not FOUND", 404);
     }
   }
-  class unauthorizedError extends ExpressError {
+  class UnauthorizedError extends ExpressError {
     constructor() {
       super("unauthorized", 401);
     }
   }
   
-  module.exports = { BadRequestError, ExpressError, NotFoundError, unauthorizedError };
+  module.exports = { BadRequestError, ExpressError, NotFoundError, UnauthorizedError };

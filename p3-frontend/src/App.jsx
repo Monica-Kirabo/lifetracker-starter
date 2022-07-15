@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { useState,useEffect } from "react";
 //import logo from "./logo.svg";
@@ -28,7 +29,7 @@ function App() {
   const [appState, setAppState] = useState({})
   const [sessionId, setSessionId] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
-  const { user, setUser } = useState({});
+  const [ user, setUser ] = useState("hi monica");
   const [isFetching, setIsFetching] = useState(false);
   const [isFetchingExercise, setIsFetchingExercise] = useState(false);
   const [isFetchingSleep, setIsFetchingSleep] = useState(false);

@@ -2,7 +2,7 @@ import * as React from "react"
 import "./LoginPage.css"
 import {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
-import Login from "./Login"
+import LoginForm from "./LoginForm"
 
 export default function LoginPage(props){
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ export default function LoginPage(props){
             React.useEffect(() => {
                 navigate("/activity"), []
             })
-            : <Login  user={props.user} setUser={props.setUser}></Login>}   
+            : <LoginForm setUser={props.setUser}></LoginForm>}   
         </div>
     )
 }

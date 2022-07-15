@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { unauthorizedError, BadRequestError } = require("../utils/errors");
 const db = require("../db");
-
+const {createUserJwt}=require("../utils/tokens")
 const { BCRYPT_WORK_FACTOR } = require("../config");
 class User {
   static async login(credentials) {
@@ -20,7 +20,10 @@ class User {
     if (user) {
       const isValid = await bcrypt.compare(credentials.password, user.password);
       if (isValid) {
-        return user;
+        const token=createUserJwt(user);
+
+    return {...user,token};
+      
       }
     }
     throw new unauthorizedError("Invalid email/password");
@@ -62,7 +65,10 @@ class User {
       ]
     );
     const user = result.rows[0];
-    return user;
+   const token=createUserJwt(user);
+
+    return {...user,token};
+
   }
 
   static async fetchUserByEmail(email) {

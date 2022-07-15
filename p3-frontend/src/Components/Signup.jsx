@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 import apiClient from "../services/apiClient";
 
-
 export default function Signup(props) {
+  useEffect(() => {
+    console.log(props.user);
+  }, [props.user]);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsProcessing] = useState(false);
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstName: "",
@@ -75,7 +77,7 @@ export default function Signup(props) {
     }
     if (data?.user) {
       props.setUser(data.user);
-      apiClient.setToken(data.token);
+      apiClient.setToken(data.user.token);
       navigate("/activity");
     }
     setIsProcessing(false);

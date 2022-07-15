@@ -3,6 +3,8 @@ const { BadRequestError, NotFoundError } = require("../utils/errors");
 
 class Exercise {
   static async createExercise({ exercise, user }) {
+    console.log(user)
+
     const requiredFields = ["name", "category", "duration", "intensity"];
     requiredFields.forEach((field) => {
       if (!exercise.hasOwnProperty(field)) {
@@ -36,12 +38,10 @@ class Exercise {
                     e.category,
                     e.duration,
                     e.intensity,
-                    u.email AS "user_email",
                     e.user_id AS "user_id",
                     e.created_at AS "created_at"
             FROM exercise AS e
-                JOIN users AS u ON u.id = e.user_id
-            WHERE e.id = $1
+            WHERE e.id = $1;
             `,
       [exerciseId]
     );
@@ -54,19 +54,17 @@ class Exercise {
 
   static async listExerciseForUser({ user_id }) {
     const results = await db.query(
-      `
-            SELECT  e.id,
+      `SELECT  e.id,
                     e.name,
                     e.category,
                     e.duration,
                     e.intensity,
-                    u.email AS "user_email",
+                   
                     e.user_id AS "user_id",
                     e.created_at AS "created_at"
-            FROM exercise AS e
-                JOIN users AS u ON u.id = e.user_id
+            FROM exercise AS e    
             WHERE e.user_id = $1
-            ORDER BY e.created_at DESC
+            ORDER BY e.created_at DESC;
             `,
       [user_id]
     );
