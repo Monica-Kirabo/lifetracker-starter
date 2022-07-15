@@ -1,17 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-//import MedicalResearch from "../MedicalResearch/MedicalResearch";
 import "./Signup.css";
+import apiClient from "../services/apiClient";
 
-// const locationOptions = [
-//   { key: 1, label: "Local Clinic", value: "local clinic" },
-//   { key: 2, label: "Regional Hospital", value: "regional hospital" },
-//   { key: 3, label: "Care Center", value: "care center" },
-//   { key: 4, label: "Department of Health", value: "department of health" },
-// ];
 
-export default function Signup({ setAppState }) {
+export default function Signup(props) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -58,47 +52,76 @@ export default function Signup({ setAppState }) {
   };
 
   const handleOnSubmit = async () => {
-    setIsLoading(true);
+    setIsProcessing(true);
     setErrors((e) => ({ ...e, form: null }));
 
     if (form.passwordConfirm !== form.password) {
       setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }));
-      setIsLoading(false);
+      setIsProcessing(false);
       return;
     } else {
       setErrors((e) => ({ ...e, passwordConfirm: null }));
     }
 
-    try {
-      const res = await axios.post("http://localhost:3001/auth/register", {
-        username: form.username,
-        first_name: form.firstName,
-        last_name: form.lastName,
-        email: form.email,
-        password: form.password,
-      });
-
-      if (res?.data?.user) {
-    //    setAppState(res.data);
-        setIsLoading(false);
-        navigate("/Activity");
-      } else {
-        setErrors((e) => ({
-          ...e,
-          form: "Something went wrong with registration",
-        }));
-        setIsLoading(false);
-      }
-    } catch (err) {
-      console.log(err);
-      const message = err?.response?.data?.error?.message;
-      setErrors((e) => ({
-        ...e,
-        form: message ? String(message) : String(err),
-      }));
-      setIsLoading(false);
+    const { data, error } = await apiClient.signUpUser({
+      email: form.email,
+      username: form.username,
+      first_name: form.firstName,
+      last_name: form.lastName,
+      password: form.password,
+    });
+    if (error) {
+      setErrors((e) => ({ ...e, form: error }));
     }
+    if (data?.user) {
+      props.setUser(data.user);
+      apiClient.setToken(data.token);
+      navigate("/activity");
+    }
+    setIsProcessing(false);
   };
+  // const handleOnSubmit = async () => {
+  //   setIsLoading(true);
+  //   setErrors((e) => ({ ...e, form: null }));
+
+  //   if (form.passwordConfirm !== form.password) {
+  //     setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }));
+  //     setIsLoading(false);
+  //     return;
+  //   } else {
+  //     setErrors((e) => ({ ...e, passwordConfirm: null }));
+  //   }
+
+  //   try {
+  //     const res = await axios.post("http://localhost:3001/auth/register", {
+  //       username: form.username,
+  //       first_name: form.firstName,
+  //       last_name: form.lastName,
+  //       email: form.email,
+  //       password: form.password,
+  //     });
+
+  //     if (res?.data?.user) {
+  //   //    setAppState(res.data);
+  //       setIsLoading(false);
+  //       navigate("/Activity");
+  //     } else {
+  //       setErrors((e) => ({
+  //         ...e,
+  //         form: "Something went wrong with registration",
+  //       }));
+  //       setIsLoading(false);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     const message = err?.response?.data?.error?.message;
+  //     setErrors((e) => ({
+  //       ...e,
+  //       form: message ? String(message) : String(err),
+  //     }));
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <div className="Register">

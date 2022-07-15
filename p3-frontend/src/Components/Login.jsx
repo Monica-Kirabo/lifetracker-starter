@@ -2,13 +2,16 @@ import * as React from "react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+
+import apiClient from "../services/apiClient";
+//import { useAuthContext } from "../context/auth";
 //import MedicalResearch from "../MedicalResearch/MedicalResearch"
 // import undraw_medical_research from "../../assets/undraw_medical_research_deep_blue.svg"
 import "./Login.css"
 
-export default function Login({appState, setAppState, sessionId, setSessionId}) {
+export default function Login(props) {
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsProcessing] = useState(false)
   const [errors, setErrors] = useState({})
   const [form, setForm] = useState({
     email: "",
@@ -28,32 +31,55 @@ export default function Login({appState, setAppState, sessionId, setSessionId}) 
   }
 
   const handleOnSubmit = async (e) => {
-  //  e.preventDefault()
-    setIsLoading(true)
-    setErrors((e) => ({ ...e, form: null }))
+    e.preventDefault();
+    setIsProcessing(true);
+    setErrors((e) => ({ ...e, form: null }));
 
-    try {
-      const res = await axios.post(`http://localhost:3001/auth/login`, form)
-      
-      if (res?.data) {
-       
-       // setAppState(res.data.user.id)
-        setSessionId(res.data.user.id)
-     
-        setIsLoading(false)
-        navigate("/Activity")
-        
-      } else {
-        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
-        setIsLoading(false)
-      }
-    } catch (err) {
-      console.log(err)
-      const message = err?.response?.data?.error?.message
-      setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
-      setIsLoading(false)
+    const { data, error } = await apiClient.loginUser({
+      email: form.email,
+      username: form.username,
+      first_name: form.firstName,
+      last_name: form.lastName,
+      password: form.password,
+    });
+    if (error) {
+      setErrors((e) => ({ ...e, form: error }));
     }
-  }
+    if (data?.user) {
+      apiClient.setToken(data.token);
+      console.log("data", data);
+      props.setUser(data.user);
+      navigate("/activity");
+    }
+    setIsProcessing(false);
+  };
+  // const handleOnSubmit = async (e) => {
+  // //  e.preventDefault()
+  //   setIsLoading(true)
+  //   setErrors((e) => ({ ...e, form: null }))
+
+  //   try {
+  //     const res = await axios.post(`http://localhost:3001/auth/login`, form)
+      
+  //     if (res?.data) {
+       
+  //      // setAppState(res.data.user.id)
+  //       setSessionId(res.data.user.id)
+     
+  //       setIsLoading(false)
+  //       navigate("/Activity")
+        
+  //     } else {
+  //       setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
+  //       setIsLoading(false)
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //     const message = err?.response?.data?.error?.message
+  //     setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+  //     setIsLoading(false)
+  //   }
+  // }
 
   
 

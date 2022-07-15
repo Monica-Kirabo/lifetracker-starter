@@ -4,12 +4,23 @@ const auth = require("./routes/auth");
 const cors = require("cors");
 const app = express();
 const nodemon = require("nodemon");
-
+const security=require("./middleware/security")
+const nutritionRoutes = require("./routes/nutrition");
+const exerciseRoutes = require("./routes/exercise");
+const sleepRoutes = require("./routes/sleep");
+const activityRoutes = require("./routes/activity");
 const { BadReqeustError, NotFoundError } = require("./utils/errors");
 const { PORT } = require("./config");
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(security.extractUserFromJwt);
+
+app.use("/auth", auth);
+app.use("/nutrition", nutritionRoutes);
+app.use("/exercise", exerciseRoutes);
+app.use("/sleep", sleepRoutes);
+app.use("/activity", activityRoutes);
 // app.use(nodemon());
 app.use("/auth", auth);
 app.use((req, res, next) => {
