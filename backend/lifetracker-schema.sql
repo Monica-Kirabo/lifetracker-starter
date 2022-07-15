@@ -20,7 +20,6 @@ CREATE TABLE users(
 
 -- );
 
-
 CREATE TABLE exercise (
     id          SERIAL PRIMARY KEY,
     name        TEXT NOT NULL,
@@ -42,8 +41,6 @@ CREATE TABLE nutrition(
     FOREIGN KEY (user_id) REFERENCES users(id),
     created_at  TIMESTAMP NOT NULL DEFAULT NOW() 
 );
-
-
 CREATE TABLE sleep (
     id          SERIAL PRIMARY KEY,
     start_time  TIMESTAMP NOT NULL DEFAULT NOW(),
